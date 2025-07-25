@@ -1,0 +1,36 @@
+.loaded {
+	display: flex;
+}
+
+.title {
+	color: black;
+	font-weight: 600;
+	padding-bottom: 8px;
+	font-size: 18px;
+	text-transform: capitalize;
+	margin: 0;
+}
+
+.posts {
+	max-width: 1240px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding: 16px;
+}
+
+.post {
+	border-radius: 8px;
+	border: 1px solid lightgray;
+	padding: 16px;
+}
+
+.text {
+	margin: 0;
+	color: gray;
+}
+
+.error {
+	color: darkred;
+}
