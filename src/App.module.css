@@ -2,11 +2,10 @@
 	display: flex;
 }
 
-.title {
+.text {
 	color: black;
-	font-weight: 600;
 	padding-bottom: 8px;
-	font-size: 18px;
+	font-size: 16px;
 	text-transform: capitalize;
 	margin: 0;
 }
@@ -26,9 +25,8 @@
 	padding: 16px;
 }
 
-.text {
-	margin: 0;
-	color: gray;
+.postCompleted {
+	background: #ddf9dd;
 }
 
 .error {

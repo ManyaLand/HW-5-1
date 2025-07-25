@@ -11,10 +11,12 @@ export const App = () => {
 			{error && <div className={style.error}>{error}</div>}
 			{!isLoading &&
 				!error &&
-				posts.map(({ id, title, body }) => (
-					<article key={id} className={style.post}>
-						<h1 className={style.title}>{title}</h1>
-						<p className={style.text}>{body}</p>
+				posts.map(({ id, title, completed }) => (
+					<article
+						key={id}
+						className={`${style.post} ${completed ? style.postCompleted : ""}`}
+					>
+						<span className={style.text}>{title}</span>
 					</article>
 				))}
 		</section>

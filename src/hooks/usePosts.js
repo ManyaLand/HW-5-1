@@ -9,7 +9,7 @@ export const usePosts = () => {
 		setIsLoading(true);
 		setError(null);
 
-		fetch("https://jsonplaceholder.typicode.com/posts")
+		fetch("https://jsonplaceholder.typicode.com/todos")
 			.then((res) => {
 				if (!res.ok) {
 					throw new Error("Ошибка загрузки данных");
