@@ -1,0 +1,51 @@
+.textContainer {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+.checkContainer {
+	min-width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	border: 1px solid lightgrey;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: white;
+	cursor: pointer;
+	transition: transform 0.2s ease;
+}
+
+.checkContainer:hover {
+	transform: translateY(-2px);
+}
+
+.text {
+	color: black;
+	padding: 0;
+	font-size: 16px;
+	text-transform: capitalize;
+	margin: 0;
+}
+
+.todo {
+	padding: 16px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	gap: 16px;
+	align-items: flex-start;
+	white-space: pre-line;
+}
+
+.todoCompleted {
+	background: #ddf9dd;
+}
+
+.buttonSection {
+	display: flex;
+	gap: 8px;
+}

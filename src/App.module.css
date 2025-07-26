@@ -1,34 +1,33 @@
-.loaded {
-	display: flex;
-}
-
-.text {
-	color: black;
-	padding-bottom: 8px;
-	font-size: 16px;
-	text-transform: capitalize;
-	margin: 0;
-}
-
-.posts {
+.content {
 	max-width: 1240px;
 	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
 	padding: 16px;
-}
-
-.post {
-	border-radius: 8px;
-	border: 1px solid lightgray;
-	padding: 16px;
-}
-
-.postCompleted {
-	background: #ddf9dd;
+	text-align: center;
 }
 
 .error {
 	color: darkred;
+}
+
+.loaded {
+	display: flex;
+}
+
+.todos {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-top: 16px;
+}
+
+.controls {
+	display: flex;
+	gap: 16px;
+}
+
+.searchInput {
+	border-radius: 8px;
+	font-size: 16px;
+	padding: 8px 12px;
+	border: 1px solid lightgray;
 }

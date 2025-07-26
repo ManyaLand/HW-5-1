@@ -1,0 +1,45 @@
+.button {
+	padding: 10px 20px;
+	background-color: #0eacc7;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+	background-color: #0c97ae;
+	transform: translateY(-2px);
+}
+
+.buttonEdit {
+	background: white;
+	color: gray;
+	border: 1px solid;
+}
+
+.buttonEdit:hover {
+	background-color: #f2f2f2;
+}
+
+.buttonDelete {
+	background: white;
+	color: darkred;
+	border: 1px solid;
+}
+
+.buttonDelete:hover {
+	background-color: #f3e5e5;
+}
+
+.buttonCancel {
+	background: white;
+	color: darkgray;
+	border: 1px solid;
+}
+
+.buttonCancel:hover {
+	background-color: #f0f0f0;
+}

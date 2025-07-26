@@ -1,0 +1,18 @@
+.form {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	justify-content: center;
+	padding: 16px 0;
+}
+
+.textarea {
+	padding: 12px 12px;
+	border-radius: 8px;
+	resize: none;
+	min-height: calc(3 * 1.5em + 26px);
+	line-height: 1.5em;
+	overflow-y: auto;
+	width: 600px;
+	border-color: lightgray;
+}
