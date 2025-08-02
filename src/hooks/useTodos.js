@@ -41,8 +41,23 @@ export const useTodos = () => {
 		}
 	};
 
+	const fetchTodo = async (id) => {
+		try {
+			setIsLoading(true);
+			setError(null);
+			const res = await fetch(`${API_URL}/${id}`);
+			if (!res.ok) throw new Error("Задача не найдена");
+			const data = await res.json();
+			return data;
+		} catch (err) {
+			setError(err.message);
+			return err;
+		} finally {
+			setIsLoading(false);
+		}
+	};
+
 	const updateTodo = async (id, updatedFields) => {
-		console.log(updatedFields);
 		try {
 			const res = await fetch(`${API_URL}/${id}`, {
 				method: "PATCH",
@@ -54,6 +69,7 @@ export const useTodos = () => {
 			setTodos((prev) =>
 				prev.map((post) => (post.id === id ? updated : post)),
 			);
+			return updated;
 		} catch (err) {
 			console.error(err.message);
 		}
@@ -78,5 +94,6 @@ export const useTodos = () => {
 		createTodo,
 		updateTodo,
 		deleteTodo,
+		fetchTodo,
 	};
 };

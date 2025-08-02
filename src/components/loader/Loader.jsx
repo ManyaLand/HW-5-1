@@ -1,6 +1,6 @@
-import style from "./Loaded.module.css";
+import style from "./Loader.module.css";
 
-export const Loaded = () => (
+export const Loader = () => (
 	<div className={style.loader}>
 		<span></span>
 		<span></span>

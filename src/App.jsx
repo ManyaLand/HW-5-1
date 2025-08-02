@@ -1,19 +1,15 @@
 import style from "./App.module.css";
-import { Loaded } from "./components/loader/Loader";
+import { Loader } from "./components/loader/Loader";
 import { Button } from "./components/button/Button";
 import { Todo } from "./components/todo/Todo";
 import { useTodos } from "./hooks/useTodos";
-import { Form } from "./components/form/Form";
 import { useState } from "react";
 import todosFunctions from "./functions/todos";
+import { Link } from "react-router-dom";
+import globalStyle from "./globalStyle/globalStyle.module.css";
 
 export const App = () => {
-	const { todos, isLoading, error, createTodo, updateTodo, deleteTodo } =
-		useTodos();
-	const [buttonCreate, setButtonCreate] = useState(false);
-	const toggleCreate = () => {
-		setButtonCreate((prev) => !prev);
-	};
+	const { todos, isLoading, error, updateTodo, deleteTodo } = useTodos();
 	const toggleTodo = (todo) =>
 		updateTodo(todo.id, { completed: !todo.completed });
 	const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +22,7 @@ export const App = () => {
 	);
 	return (
 		<div className={style.content}>
+			<h2 className={globalStyle.title}>Список задач</h2>
 			<div className={style.controls}>
 				<input
 					type="text"
@@ -43,15 +40,12 @@ export const App = () => {
 						Сортировать по алфавиту
 					</Button>
 				)}
-				{!buttonCreate && (
-					<Button onClick={toggleCreate}>Создать задачу</Button>
-				)}
+				<Link to="/task">
+					<Button>Создать задачу</Button>
+				</Link>
 			</div>
-			{buttonCreate && (
-				<Form onSubmit={createTodo} onCancel={toggleCreate} />
-			)}
 			{isLoading ? (
-				<Loaded />
+				<Loader />
 			) : (
 				<section className={style.todos}>
 					{!error &&
