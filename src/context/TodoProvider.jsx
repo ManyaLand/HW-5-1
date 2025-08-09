@@ -1,8 +1,14 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { Loaded } from "../components/loader/Loader";
 
+const TodoContext = createContext();
 const API_URL = "http://localhost:3000/todos";
 
 export const useTodos = () => {
+	return useContext(TodoContext);
+};
+
+export const TodoProvider = ({ children }) => {
 	const [todos, setTodos] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState(null);
@@ -42,12 +48,28 @@ export const useTodos = () => {
 	};
 
 	const updateTodo = async (id, updatedFields) => {
-		console.log(updatedFields);
 		try {
 			const res = await fetch(`${API_URL}/${id}`, {
 				method: "PATCH",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(updatedFields),
+			});
+			if (!res.ok) throw new Error("Ошибка обновления");
+			const updated = await res.json();
+			setTodos((prev) =>
+				prev.map((post) => (post.id === id ? updated : post)),
+			);
+		} catch (err) {
+			console.error(err.message);
+		}
+	};
+
+	const toggleTodo = async (id, isCompleted) => {
+		try {
+			const res = await fetch(`${API_URL}/${id}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ completed: isCompleted }),
 			});
 			if (!res.ok) throw new Error("Ошибка обновления");
 			const updated = await res.json();
@@ -71,12 +93,17 @@ export const useTodos = () => {
 		}
 	};
 
-	return {
-		todos,
-		isLoading,
-		error,
-		createTodo,
-		updateTodo,
-		deleteTodo,
-	};
+	return (
+		<TodoContext
+			value={{ todos, createTodo, updateTodo, deleteTodo, toggleTodo }}
+		>
+			{error ? (
+				<h2>Упс... что-то пошло не так</h2>
+			) : isLoading ? (
+				<Loaded />
+			) : (
+				children
+			)}
+		</TodoContext>
+	);
 };
