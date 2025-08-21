@@ -2,18 +2,19 @@ import style from "./Todo.module.css";
 import { Button } from "../button/Button";
 import { useState } from "react";
 import { Form } from "../form/Form";
-import { useTodos } from "../../context/TodoProvider";
+import { useDispatch } from "react-redux";
+import { updateTodo, deleteTodo, toggleTodo } from "../../redux/actions";
 
 export const Todo = ({ completed, text, id }) => {
 	const [editClick, setEditClick] = useState(false);
-	const { updateTodo, deleteTodo, toggleTodo } = useTodos();
+	const dispatch = useDispatch();
 
 	const onToggleEdit = () => {
 		setEditClick((prev) => !prev);
 	};
 
 	const submitForm = (data) => {
-		updateTodo(id, data);
+		dispatch(updateTodo(id, data));
 		setEditClick(false);
 	};
 
@@ -25,9 +26,7 @@ export const Todo = ({ completed, text, id }) => {
 				<section className={style.textContainer}>
 					<div
 						className={style.checkContainer}
-						onClick={() => {
-							toggleTodo(id, !completed);
-						}}
+						onClick={() => dispatch(toggleTodo(id, !completed))}
 					>
 						{completed && <i className="fas fa-check"></i>}
 					</div>
@@ -39,7 +38,7 @@ export const Todo = ({ completed, text, id }) => {
 					</Button>
 					<Button
 						className="buttonDelete"
-						onClick={() => deleteTodo(id)}
+						onClick={() => dispatch(deleteTodo(id))}
 					>
 						<i className="fas fa-trash"></i>
 					</Button>
